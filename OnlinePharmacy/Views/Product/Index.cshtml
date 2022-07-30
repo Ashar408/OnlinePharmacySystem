@@ -1,0 +1,55 @@
+﻿@model IEnumerable<Product>
+<partial name="_Notification" />
+<div class="container p-3">
+    <div class="row pt-4">
+        <div class="col-6">
+            <h1 class="text-primary">Product List</h1>
+        </div>
+
+        <div class="col-6 text-end pt-2">
+            <a asp-controller="Company" asp-action="Upsert" class="btn btn-primary"><i class="bi bi-plus-circle"></i> Create New Company</a>
+        </div>
+
+    </div>
+</div><br />
+
+
+<table class="table table-border table-striped " id="myTable">
+<thead>
+    <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Price</th>
+        <th>Category</th>
+        <th>Company</th>
+        <th>ImageUrl</th>
+        
+
+        
+        
+        <th>Action</th>
+    </tr>
+</thead>
+
+<tbody  id="myTable"> 
+        @foreach(var obj in Model)
+        {
+            <tr>
+                <td>@obj.Name</td>
+                <td>@obj.Description</td>
+                <td>@obj.Price</td>
+                <td>@obj.Category.Name</td>
+                <td>@obj.Company.Name</td>
+                <td>@obj.ImageUrl</td>
+               
+                <td>
+                    <div class="w-60 btn-group" role="group">
+                    <a asp-controller="Category" asp-action="Edit" asp-route-id="@obj.Id" class="btn btn-primary mx-2" ><i class="bi bi-pencil-square"></i> Edit</a> | 
+                    <a asp-controller="Category" asp-action="Delete" asp-route-id="@obj.Id" class="btn btn-danger mx-2"><i class="bi bi-trash"></i>Delete</a>
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+
+</table>
